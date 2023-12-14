@@ -1,8 +1,9 @@
 require('dotenv').config();
 const mongoose = require('mongoose');
+// Set the strictQuery option to false to prepare for Mongoose 7 changes
+mongoose.set('strictQuery', false);
 
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
-
 
 let Person;
 
