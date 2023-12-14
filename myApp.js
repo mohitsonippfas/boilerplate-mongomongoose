@@ -84,7 +84,7 @@ const findAndUpdate = (personName, done) => {
   })
 };
 
- constremoveById = (personId, done)=> {
+ const removeById = (personId, done)=> {
   Person.findByIdAndRemove(
     personId,
     (err, removedDoc) => {
@@ -96,14 +96,14 @@ const findAndUpdate = (personName, done) => {
 
 const removeManyPeople = (done) => {
   const nameToRemove = "Mary";
-
-  done(null /*, data*/);
+  Person.remove({name: nameToRemove}, (err, response) => {
+    if(err) return console.log(err);
+    done(null, response);
+  })
 };
 
 const queryChain = (done) => {
-  const foodToSearch = "burrito";
 
-  done(null /*, data*/);
 };
 
 /** **Well Done !!**
