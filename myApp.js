@@ -5,7 +5,7 @@ mongoose.set('strictQuery', false);
 
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
-const Schema=mongoose.Schema;
+const Schema = mongoose.Schema;
 
 const personSchema = new Schema({
   name: { type: String, required: true },
@@ -17,31 +17,37 @@ const personSchema = new Schema({
 let Person = mongoose.model("Person", personSchema);
 
 const createAndSavePerson = (done) => {
-  let mohitsoni=new Person({name:"mohit",age:25,favoriteFoods:["Pizza","Burger"]});
+  let mohitsoni = new Person({ name: "mohit", age: 25, favoriteFoods: ["Pizza", "Burger"] });
 
-  mohitsoni.save(function(err, data) {
+  mohitsoni.save(function (err, data) {
     if (err) return done(err);
     done(null, data)
   });
 };
 
 let arrayOfPeople = [
-  {name: "Frankie", age: 74, favoriteFoods: ["Del Taco"]},
-  {name: "Sol", age: 76, favoriteFoods: ["roast chicken"]},
-  {name: "Robert", age: 78, favoriteFoods: ["wine"]}
+  { name: "Frankie", age: 74, favoriteFoods: ["Del Taco"] },
+  { name: "Sol", age: 76, favoriteFoods: ["roast chicken"] },
+  { name: "Robert", age: 78, favoriteFoods: ["wine"] }
 ];
 
 
 const createManyPeople = (arrayOfPeople, done) => {
 
-  Person.create(arrayOfPeople,  (err, people)=> {
+  Person.create(arrayOfPeople, (err, people) => {
     if (err) return done(err);
     done(null, people);
   });
 };
 
+const personName={name:"mohit"}
+
 const findPeopleByName = (personName, done) => {
-  done(null /*, data*/);
+
+  Person.find(personName, (err, data) => {
+    if (err) return done(err);
+    done(null, data);
+  })
 };
 
 const findOneByFood = (food, done) => {
