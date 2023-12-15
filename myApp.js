@@ -94,12 +94,26 @@ const findAndUpdate = (personName, done) => {
   ); 
 };
 
+// const removeManyPeople = (done) => {
+//   const nameToRemove = "Mary";
+//   Person.remove({name: nameToRemove}, (err, response) => {
+//     if(err) return console.log(err);
+//     done(null, response);
+//   })
+// };
 const removeManyPeople = (done) => {
   const nameToRemove = "Mary";
-  Person.remove({name: nameToRemove}, (err, response) => {
-    if(err) return console.log(err);
-    done(null, response);
-  })
+  Person.remove({ name: nameToRemove }, (err, response) => {
+    if (err) return console.log(err);
+
+    // Format the response as JSON before passing it to the done callback
+    const result = {
+      deletedCount: response.deletedCount,
+      // other properties from the response if needed
+    };
+
+    done(null, result);
+  });
 };
 
 const queryChain = (done) => {
