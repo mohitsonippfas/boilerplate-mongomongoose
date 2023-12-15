@@ -97,7 +97,7 @@ const findAndUpdate = (personName, done) => {
 const removeManyPeople = (done) => {
   const nameToRemove = "Mary";
 const query = { name: nameToRemove };
-  Model.remove(query, (error, data) => {
+  Person.remove(query, (error, data) => {
     if(error) {
       done(error);
     } else {
