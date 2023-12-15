@@ -96,7 +96,7 @@ const findAndUpdate = (personName, done) => {
 
 const removeManyPeople = (done) => {
   const nameToRemove = "Mary";
-  Person.remove({name: nameToRemove}, (err, response) => {
+  Person.deleteMany({name: nameToRemove}, (err, response) => {
     console.log("response",response)
     if(err) return console.log("err",err);
     done(null, response);
