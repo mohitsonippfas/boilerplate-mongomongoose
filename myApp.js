@@ -96,10 +96,14 @@ const findAndUpdate = (personName, done) => {
 
 const removeManyPeople = (done) => {
   const nameToRemove = "Mary";
-  Person.deleteMany({name:nameToRemove},(err,data)=>{
-    if(err) return done(err);
-    done(null,data);
-  })
+const query = { name: nameToRemove };
+  Model.remove(query, (error, data) => {
+    if(error) {
+      done(error);
+    } else {
+      done(null, data)
+    }
+  });
 };
 
 
